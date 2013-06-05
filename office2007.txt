@@ -1,0 +1,9 @@
+$ WINEARCH=win32 WINEPREFIX=~/win32 winecfg
+and set windows to xp and then ran:
+
+$ WINEPREFIX=~/win32 winetricks msxml3  gdiplus riched20 riched30 vcrun2005sp1 allfonts
+$ WINEPREFIX=~/win32 wine setup.exe
+and then to actually use any of the executables you must cd to the directory. IE:
+$ cd ~/win32/drive_c/Program Files/Microsoft Office/Office12
+$ WINEPREFIX=~/win32 wine ./EXCEL.EXE
+
