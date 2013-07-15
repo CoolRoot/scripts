@@ -1,2 +1,3 @@
 #/bin/bash
-systemctl suspend
+if
+	systemctl suspend

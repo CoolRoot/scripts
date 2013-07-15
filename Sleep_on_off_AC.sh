@@ -1,12 +1,6 @@
 #!/bin/bash
-case "$1" in
-  true)
-	zenity --info --title="AC_UNPLUGGED" --text="AC_UNPLUGGED"
-#sudo s2ram
-	;;
-  false)
-	echo "no"
-	;;
-esac
-exit 0
-
+espeak "AC Unpluged, Suspending in 20 seconds if power is not restored."
+for ((i=0;i<4;i++)); do sleep 5
+	if [ $(cat /sys/class/power_supply/AC0/online) -eq "1" -a $i -eq 4 ]; then
+		/usr/bin/systemctl suspend
+	else espeak "Check power cable please."; fi
