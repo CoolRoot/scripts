@@ -1,0 +1,14 @@
+iso2usb
+# dd bs=4M if=/path/to/archlinux.iso of=/dev/sdx
+restore the drive
+# dd count=1 bs=512 if=/dev/zero of=/dev/sdx
+
+With the ability towrite on the device
+$ cd /media/somefolder/arch/boot/syslinux    #Where somefolder is the USB drive's mount point. Do not skip this step.
+# extlinux --install .                       #Type it exactly as you see it, including the dot.
+# dd bs=440 conv=notrunc count=1 if=/usr/lib/syslinux/mbr.bin of=/dev/sdx
+# parted /dev/sdx toggle 1 boot
+
+not nes
+$ sed -i "s|label=ARCH_.*|device=/dev/disk/by-uuid/$(blkid -o value -s UUID /dev/sdx1)|" archiso_sys{32,64}.cfg
+
