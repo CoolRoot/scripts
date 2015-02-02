@@ -1,0 +1,9 @@
+#!/bin/sh
+case $(xsetwacom --get "Serial Wacom Tablet touch" gesture) in
+	"on")
+		xsetwacom --set "Serial Wacom Tablet touch" gesture off
+	"off")
+		xsetwacom --set "Serial Wacom Tablet touch" gesture on
+	*)
+		echo "Error" ;;
+esac

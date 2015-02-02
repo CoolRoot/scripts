@@ -1,0 +1,27 @@
+#!/bin/sh
+# normal,inverted,left,right
+#toggel=$(cat ~/.lastTstate)
+case $(cat ~/.lastTstate) in
+	"normal" )
+		echo "left" > ~/.lastTstate; xrandr --output LVDS1 --rotate "left"
+		sudo /usr/bin/setkeycodes e007 103
+                sudo /usr/bin/setkeycodes e006 108
+                ;;
+	"left" )
+		echo "inverted" > ~/.lastTstate; xrandr --output LVDS1 --rotate "inverted"
+                sudo /usr/bin/setkeycodes e007 103
+                sudo /usr/bin/setkeycodes e006 108
+                ;;
+	"inverted" )
+		echo "right" > ~/.lastTstate; xrandr --output LVDS1 --rotate "right"
+		sudo /usr/bin/setkeycodes e007 108
+		sudo /usr/bin/setkeycodes e006 103
+		;;
+	"right" )
+		echo "normal" > ~/.lastTstate; xrandr --output LVDS1 --rotate "normal"
+                sudo /usr/bin/setkeycodes e007 108
+                sudo /usr/bin/setkeycodes e006 103
+                ;;
+	*)
+		echo "ERROR :(";;
+esac
